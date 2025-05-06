@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $page_title = "Login Page";
 include('index/header.php');
 include('index/navbar.php');

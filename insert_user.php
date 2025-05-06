@@ -45,25 +45,32 @@ if(isset($_POST['register'])) {
     $phone = $_POST['phone'];
     $token = md5(rand()); //create random alphanumeric 
 
-    $email_pattern = 
-    $check_email_query = "SELECT email FROM users WHERE email='$email' LIMIT 1";
-    $check_email = mysqli_query($con, $check_email_query);
+    if(!empty(trim($_POST['email'])) and !empty(trim($_POST['password'])) and !empty(trim($_POST['phone'])) and !empty(trim($_POST['name'])) and !empty(trim($_POST['cpassword'])) ){
 
-    if(mysqli_num_rows($check_email)){
-        $_SESSION['status'] = "Email Id Already Exist";
-        header("location: register.php");
-    } else {
-        // insert user
-        $query = "INSERT INTO `users`( `name`, `phone`, `email`, `password`, `token`) VALUES ('$name','$phone','$email','$password','$token')";
-        $query_check = mysqli_query($con,$query);
-        if($query_check) {
-            sendemail_verify("$name","$email","$token");
-            $_SESSION['status'] = "Registration Successfull.! Please Verify Your Email Address";
+
+        // $email_pattern = 
+        $check_email_query = "SELECT email FROM users WHERE email='$email' LIMIT 1";
+        $check_email = mysqli_query($con, $check_email_query);
+
+        if(mysqli_num_rows($check_email)){
+            $_SESSION['status'] = "Email Id Already Exist";
             header("location: register.php");
         } else {
-            $_SESSION['status'] = "registration Fail";
-            header("location: register.php");
+            // insert user
+            $query = "INSERT INTO `users`( `name`, `phone`, `email`, `password`, `token`) VALUES ('$name','$phone','$email','$password','$token')";
+            $query_check = mysqli_query($con,$query);
+            if($query_check) {
+                sendemail_verify("$name","$email","$token");
+                $_SESSION['status'] = "Registration Successfull.! Please Verify Your Email Address";
+                header("location: register.php");
+            } else {
+                $_SESSION['status'] = "registration Fail";
+                header("location: register.php");
+            }
         }
+    } else {
+        $_SESSION['status'] = "All fiesld are mandatory!";
+        header("location: register.php");
     }
 }
 

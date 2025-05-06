@@ -1,22 +1,28 @@
 <?php
-
+session_start();
 if (isset($_POST['login'])) {
-    include 'connect.php';
+    if(!empty(trim($_POST['email'])) and !empty(trim($_POST['password']))){
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    
+        include 'connect.php';
 
-    $check = mysqli_query($con, "SELECT * FROM `users` WHERE email='$email' AND password='$password'");
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-    if(mysqli_num_rows($check)){
-        session_start();
-        $_SESSION['email']=  $email;
-        echo "<script>location.href='home.php'</script>";
+        $check = mysqli_query($con, "SELECT * FROM `users` WHERE email='$email' AND password='$password'");
 
-    }else{
-        echo "<script>alert('wrong username or password')</script>";
-    echo "<script>location.href='login.php'</script>";
+        if(mysqli_num_rows($check)){
+            session_start();
+            $_SESSION['email']=  $email;
+            echo "<script>location.href='home.php'</script>";
 
+        }else{
+            $_SESSION['status'] = "wrong email or password!";
+            header("location: login.php");
+        }
+    } else {
+        $_SESSION['status'] = "All fiesld are mandatory!";
+        header("location: login.php");
     }
 } else {
     echo "<script>alert('donot access from url')</script>";
