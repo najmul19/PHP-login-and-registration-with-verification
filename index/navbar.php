@@ -14,6 +14,9 @@
         <a class="nav-link" href="index.php">Home</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="dashboard.php">Dahsboard</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="register.php">Regiter</a>
       </li>
       <li class="nav-item">
