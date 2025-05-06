@@ -20,22 +20,25 @@ include('index/navbar.php');
             } 
         ?>
       <div class="card shadow">
-            <div class="card-header">
+            <div class="card-header text-center">
                 <h5>Login Form</h5>
             </div>
             <div class="card-body">
                <form action="loginaction.php" method="post">
-                <div class="from-group">
+                <div class="from-group mb-3">
                         <label for="">Email</label>
                         <input type="email" name="email" class="form-control">
                     </div>
-                    <div class="from-group">
+                    <div class="from-group mb-3">
                         <label for="">Password</label>
                         <input type="password" name="password" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" name="login">Login</button>
+                    <div class="form-group mb-3">
+                        <button type="submit" class="btn btn-primary form-control" name="login">Login</button>
                     </div>
+                   <div class="text-center">
+                        <small>New this page? </small> <span class="text-primary"> <a href="register.php">Register</a></span>
+                   </div>
                </form>
             </div>
         </div>

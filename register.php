@@ -44,8 +44,11 @@ include('index/navbar.php');
                                 <label for="">Confirm Password</label>
                                 <input type="password" name="cpassword" class="form-control">
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary" name="register">Register</button>
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-primary form-control" name="register">Register</button>
+                            </div>
+                            <div class="text-center">
+                                 <small>Already have an account? </small> <span class="text-primary"> <a href="login.php">Login</a></span>
                             </div>
                         </form>
                     </div>
